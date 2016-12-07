@@ -7,7 +7,7 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>f17ef1b9-51d4-4eb9-b4d1-de6b1c30ea35</ProjectGuid>
+    <ProjectGuid>beda033e-8d01-464d-98ec-0028617876ac</ProjectGuid>
     <RootNamespace>FileWR</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
