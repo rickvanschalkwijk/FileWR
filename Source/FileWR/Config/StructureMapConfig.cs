@@ -15,7 +15,7 @@ namespace FileWR.DI
                 config.Scan(_ =>
                 {
                     _.AssemblyContainingType(typeof(Program));
-                    _.AssemblyContainingType(typeof(FileHelper));
+                    _.AssemblyContainingType(typeof(FileService));
                     _.WithDefaultConventions();
                 });
             });

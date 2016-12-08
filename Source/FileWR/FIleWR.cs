@@ -1,23 +1,29 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FileWR.Business;
 
 namespace FileWR
 {
+    /*
+     * TODO
+     * Create timer to see excution time
+     * 
+     */
     public class FileWR
     {
-        private readonly IFileHelper _fileHelper;
+        private readonly IFileService _fileService;
+        private readonly IDirectoryService _directoryService;
 
-        public FileWR(IFileHelper fileHelper)
+        public FileWR(IFileService fileService, IDirectoryService directoryService)
         {
-            _fileHelper = fileHelper;
+            _fileService = fileService;
+            _directoryService = directoryService;
         }
 
         public async Task Run()
         {
-            var response = await _fileHelper.Bar();
+            var createdDir = await _directoryService.CreateDirectoryAsync("input");
 
-            Console.WriteLine(response);
+            await _fileService.CreateFileAsync("file.txt");
         }
     }
 }

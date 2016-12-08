@@ -22,8 +22,8 @@ namespace FileWR
             // run the main task
             Task.Run(async () =>
             {
-                await new FileWR(container.GetInstance<IFileHelper>()).Run();
-            });
+                await new FileWR(container.GetInstance<IFileService>(), container.GetInstance<IDirectoryService>()).Run();
+            }).Wait();
 
             Console.Write("\nPress any key to exit... ");
             Console.ReadKey();
