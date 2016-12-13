@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using FileWR.Business;
 using FileWR.DI;
@@ -14,6 +16,9 @@ namespace FileWR
 
         public static void Main(string[] args)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             var container = ConfigureServices(Services);
 
             // set up all the console properties
@@ -22,10 +27,12 @@ namespace FileWR
             // run the main task
             Task.Run(async () =>
             {
-                await new FileWR(container.GetInstance<IFileService>(), container.GetInstance<IDirectoryService>()).Run();
+                await new FileWR(container.GetInstance<IFileService>()).Run();
             }).Wait();
 
+            Console.Write($"\n Took {stopwatch.ElapsedMilliseconds}ms to run");
             Console.Write("\nPress any key to exit... ");
+            stopwatch.Stop();
             Console.ReadKey();
         }
 
