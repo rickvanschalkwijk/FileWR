@@ -1,9 +1,9 @@
 {
   "version": "1.0.0-*",
   "buildOptions": {
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "debugType": "portable"
   },
-
   "dependencies": {
     "FileWR.Business": "1.0.0-*",
     "Microsoft.Extensions.Configuration": "1.0.0",
@@ -21,10 +21,16 @@
     },
     "StructureMap.Microsoft.DependencyInjection": "1.2.0"
   },
-
   "frameworks": {
     "netcoreapp1.0": {
       "imports": "dnxcore50"
     }
+  },
+  "publishOptions": {
+    "include": [
+      "docker-compose.yml",
+      "Dockerfile",
+      ".dockerignore"
+    ]
   }
 }

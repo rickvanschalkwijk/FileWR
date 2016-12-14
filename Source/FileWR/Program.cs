@@ -22,7 +22,7 @@ namespace FileWR
             var container = ConfigureServices(Services);
 
             // set up all the console properties
-            SetUpConsole();
+          //  SetUpConsole();
 
             // run the main task
             Task.Run(async () =>
@@ -33,7 +33,7 @@ namespace FileWR
             Console.Write($"\n Took {stopwatch.ElapsedMilliseconds}ms to run");
             Console.Write("\nPress any key to exit... ");
             stopwatch.Stop();
-            Console.ReadKey();
+            Console.Read();
         }
 
         private static Container ConfigureServices(IServiceCollection services)

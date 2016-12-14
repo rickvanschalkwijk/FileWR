@@ -219,3 +219,5 @@ _Pvt_Extensions
 #Output files
 */*/input/*.txt
 
+#docker compile
+Source/FileWR/app/*
