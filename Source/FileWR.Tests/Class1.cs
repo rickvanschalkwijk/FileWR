@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NUnit.Framework;
 
 namespace FileWR.Tests
 {
+    [TestFixture]
     public class Class1
     {
-        public Class1()
+        [Test]
+        public void DummyTest()
         {
+            Assert.That(true, Is.EqualTo(true));
         }
     }
 }
