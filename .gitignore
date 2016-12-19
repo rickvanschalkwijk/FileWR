@@ -216,5 +216,8 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
-/Source/FileWR/app/*
-/Source/FileWR/input/*
+#Output files
+*/*/input/*.txt
+
+#docker compile 
+Source/FileWR/app/*
