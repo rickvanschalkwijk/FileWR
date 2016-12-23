@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -13,11 +12,13 @@ namespace FileWR.Business
         private readonly Random _randomNumberGenerator = new Random();
         private readonly UnicodeEncoding _unicodeEncoding = new UnicodeEncoding();
         private readonly IDirectoryService _directoryService;
+        private readonly IFileWriteSerivce _fileWriteService;
 
-        public FileService(ILogger<FileService> logger, IDirectoryService directoryService)
+        public FileService(ILogger<FileService> logger, IDirectoryService directoryService, IFileWriteSerivce fileWriteService)
         {
             _logger = logger;
             _directoryService = directoryService;
+            _fileWriteService = fileWriteService;
         }
         public async Task<string> CreateFileAsync(string path)
         {
@@ -42,7 +43,7 @@ namespace FileWR.Business
 
         public async Task WriteToFileAsync(string path)
         {         
-            await WriteToFileAsync(path, GenerateFileContents());
+            await WriteToFileAsync(path, _fileWriteService.GenerateFileContents());
         }
 
         public async Task WriteToFileAsync(string path, byte[] bytesToWrite)
@@ -59,15 +60,6 @@ namespace FileWR.Business
             {
                 _logger.LogError($"Can not file source file: {ex}");
             }
-        }
-
-        private byte[] GenerateFileContents()
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-            var randomString = new string(Enumerable.Repeat(chars, 1000000)
-              .Select(p => p[_randomNumberGenerator.Next(p.Length)]).ToArray());
-
-            return _unicodeEncoding.GetBytes(randomString);
         }
     }
 
