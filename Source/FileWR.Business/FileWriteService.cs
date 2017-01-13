@@ -7,13 +7,13 @@ using System.Text;
 
 namespace FileWR.Business
 {
-    public class FileWriteService : IFileWriteSerivce
+    public class FileWriteService : IFileWriteService
     {
-        private readonly ILogger<IFileWriteSerivce> _logger;
+        private readonly ILogger<IFileWriteService> _logger;
         private readonly Random _randomNumberGenerator = new Random();
         private readonly UnicodeEncoding _unicodeEncoding = new UnicodeEncoding();
 
-        public FileWriteService(ILogger<IFileWriteSerivce> logger)
+        public FileWriteService(ILogger<IFileWriteService> logger)
         {
             _logger = logger;
         }
@@ -28,7 +28,7 @@ namespace FileWR.Business
         }
     }
 
-    public interface IFileWriteSerivce
+    public interface IFileWriteService
     {
         byte[] GenerateFileContents();
     }

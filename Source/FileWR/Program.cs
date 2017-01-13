@@ -54,8 +54,6 @@ namespace FileWR
         private static void SetUpConsole()
         {
             Console.Title = "FileWR";
-            Console.WindowHeight = 75;
-            Console.WindowWidth = 75;
         }
     }
 }

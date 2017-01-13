@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
@@ -9,12 +8,10 @@ namespace FileWR.Business
     public class FileService : IFileService
     {
         private readonly ILogger<FileService> _logger;
-        private readonly Random _randomNumberGenerator = new Random();
-        private readonly UnicodeEncoding _unicodeEncoding = new UnicodeEncoding();
         private readonly IDirectoryService _directoryService;
-        private readonly IFileWriteSerivce _fileWriteService;
+        private readonly IFileWriteService _fileWriteService;
 
-        public FileService(ILogger<FileService> logger, IDirectoryService directoryService, IFileWriteSerivce fileWriteService)
+        public FileService(ILogger<FileService> logger, IDirectoryService directoryService, IFileWriteService fileWriteService)
         {
             _logger = logger;
             _directoryService = directoryService;
