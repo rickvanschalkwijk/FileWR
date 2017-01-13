@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace FileWR.Business
+namespace FileWR.Business.Services
 {
     public class DirectoryService : IDirectoryService
     {

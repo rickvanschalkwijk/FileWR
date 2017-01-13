@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using FileWR.Business;
-using FileWR.DI;
+using FileWR.Business.Services;
+using FileWR.Config;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StructureMap;
@@ -27,7 +27,8 @@ namespace FileWR
             // run the main task
             Task.Run(async () =>
             {
-                await new FileWR(container.GetInstance<IFileService>()).Run();
+                await new FileWR(container.GetInstance<IFileService>(), container.GetInstance<IFileWriter>())
+                .Run();
             }).Wait();
 
             Console.Write($"\n Took {stopwatch.ElapsedMilliseconds}ms to run");

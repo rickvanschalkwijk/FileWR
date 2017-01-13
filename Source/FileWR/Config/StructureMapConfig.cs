@@ -1,8 +1,8 @@
-﻿using FileWR.Business;
+﻿using FileWR.Business.Services;
 using Microsoft.Extensions.DependencyInjection;
 using StructureMap;
 
-namespace FileWR.DI
+namespace FileWR.Config
 {
     public static class StructureMapConfig
     {
