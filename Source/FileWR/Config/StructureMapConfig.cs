@@ -1,4 +1,5 @@
-﻿using FileWR.Business.Services;
+﻿using FileWR.Business;
+using FileWR.Business.Services;
 using Microsoft.Extensions.DependencyInjection;
 using StructureMap;
 
@@ -15,7 +16,7 @@ namespace FileWR.Config
                 config.Scan(_ =>
                 {
                     _.AssemblyContainingType(typeof(Program));
-                    _.AssemblyContainingType(typeof(FileService));
+                    _.AssemblyContainingType(typeof(FileWriter));
                     _.WithDefaultConventions();
                 });
             });

@@ -6,19 +6,22 @@ namespace FileWR
 {
     public class FileWR
     {
-        private readonly IFileService _fileService;
         private readonly IFileWriter _fileWriter;
+        private readonly IFileReader _fileReader;
 
-        public FileWR(IFileService fileService, IFileWriter fileWriter)
+        public FileWR(IFileWriter fileWriter, IFileReader fileReader)
         {
-            _fileService = fileService;
             _fileWriter = fileWriter;
+            _fileReader = fileReader;
         }
 
         public async Task Run()
         {
-            var filePath = await _fileService.CreateFileAsync("random-input-file.txt");
-            await _fileWriter.WriteToFileAsync(filePath, ContentGenerator.GenerateFileContents());
+            var filePath = await _fileWriter.CreateFileAsync("random-input-file.txt", ContentHelper.GenerateFileContents());
+            var content = await _fileReader.ReadAsync(filePath);
+            var splitFileContent = ContentHelper.SplitFileContent(content);
+            await _fileWriter.CreateFileAsync("char-output-file.txt", splitFileContent["chars"]);
+            await _fileWriter.CreateFileAsync("digits-output-file.txt", splitFileContent["digits"]);
         }
     }
 }
