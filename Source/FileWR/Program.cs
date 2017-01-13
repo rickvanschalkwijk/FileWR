@@ -27,7 +27,9 @@ namespace FileWR
             // run the main task
             Task.Run(async () =>
             {
-                await new FileWR(container.GetInstance<IFileService>(), container.GetInstance<IFileWriter>())
+                await new FileWR(
+                    container.GetInstance<IFileWriter>(),
+                    container.GetInstance<IFileReader>())
                 .Run();
             }).Wait();
 
