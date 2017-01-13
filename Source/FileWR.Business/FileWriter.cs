@@ -10,32 +10,41 @@ namespace FileWR.Business
 {
     public class FileWriter : IFileWriter
     {
-        private readonly ILogger<FileService> _logger;
+        private readonly ILogger<FileWriter> _logger;
+        private readonly IDirectoryService _directoryService;
 
-        public FileWriter(ILogger<FileService> logger)
+        public FileWriter(ILogger<FileWriter> logger, IDirectoryService directoryService)
         {
             _logger = logger;
+            _directoryService = directoryService;
         }
-
-        public async Task WriteToFileAsync(string path, byte[] bytesToWrite)
+        public async Task<string> CreateFileAsync(string path, string content)
         {
+            var combinedPath = string.Empty;
+
             try
             {
-                using (FileStream stream = File.Open(path, FileMode.Open))
+                var dirPath = await _directoryService.CreateDirectoryAsync("input");
+                combinedPath = Path.Combine(dirPath, path);
+
+                using (StreamWriter writer = File.CreateText(combinedPath))
                 {
-                    stream.Seek(0, SeekOrigin.End);
-                    await stream.WriteAsync(bytesToWrite, 0, bytesToWrite.Length);
+                    await writer.WriteAsync(content);
                 }
+
+                _logger.LogInformation($"File created at path: {combinedPath}");
             }
-            catch (FileNotFoundException ex)
+            catch (Exception ex)
             {
-                _logger.LogError($"Can not file source file: {ex}");
+                _logger.LogError($"Unable to create file: {ex}");
             }
+
+            return combinedPath;
         }
     }
 
     public interface IFileWriter
     {
-        Task WriteToFileAsync(string path, byte[] bytesToWrite);
+        Task<string> CreateFileAsync(string path, string content);
     }
 }
