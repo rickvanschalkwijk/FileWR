@@ -221,3 +221,5 @@ _Pvt_Extensions
 
 #docker compile 
 Source/FileWR/app/*
+Source/FileWR/char-output-file.txt
+Source/FileWR/digits-output-file.txt

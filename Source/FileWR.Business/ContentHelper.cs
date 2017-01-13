@@ -10,7 +10,7 @@ namespace FileWR.Business
         {
             var _randomNumberGenerator = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-            var randomString = new string(Enumerable.Repeat(chars, 1000)
+            var randomString = new string(Enumerable.Repeat(chars, 100000)
               .Select(p => p[_randomNumberGenerator.Next(p.Length)]).ToArray());
 
             return randomString;

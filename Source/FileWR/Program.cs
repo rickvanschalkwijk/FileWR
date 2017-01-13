@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using FileWR.Business;
+using FileWR.Business.Services;
 using FileWR.Config;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -28,7 +29,8 @@ namespace FileWR
             {
                 await new FileWR(
                     container.GetInstance<IFileWriter>(),
-                    container.GetInstance<IFileReader>())
+                    container.GetInstance<IFileReader>(),
+                    container.GetInstance<IDirectoryService>())
                 .Run();
             }).Wait();
 
